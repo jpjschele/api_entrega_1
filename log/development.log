@@ -1,0 +1,1082 @@
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateWarehouses (20180418131310)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateWarehouses (20180418131443)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "warehouses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "gid" varchar, "usedSpace" integer, "totalSpace" integer, "reception" boolean, "despacho" boolean, "pulmon" boolean, "group" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180418131443"]]
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-04-18 13:15:05.573729"], ["updated_at", "2018-04-18 13:15:05.573729"]]
+  [1m[35m (4.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProducts (20180418132139)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "gid" varchar, "sku" varchar, "cost" float, "group" integer, "despachado" boolean, "price" float, "direccion" varchar, "oc_id" varchar, "vencimiento" date, "warehouse_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_3eb2f07fab"
+FOREIGN KEY ("warehouse_id")
+  REFERENCES "warehouses" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_products_on_warehouse_id" ON "products" ("warehouse_id")[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180418132139"]]
+  [1m[35m (3.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_products_on_warehouse_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_products_on_warehouse_id' AND type='index'
+[0m
+Started GET "/" for 127.0.0.1 at 2018-04-18 10:47:54 -0300
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/JPSCHELE/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/JPSCHELE/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (10.4ms)
+Completed 200 OK in 59ms (Views: 31.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-04-18 10:48:00 -0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/JPSCHELE/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/JPSCHELE/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (4.0ms)
+Completed 200 OK in 13ms (Views: 8.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 10:48:05 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (uninitialized constant ProductsController::HTTPClient):
+  
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 10:51:39 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (uninitialized constant ProductsController::HTTPClient):
+  
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 10:53:27 -0300
+Processing by ProductsController#get_all as HTML
+Completed 406 Not Acceptable in 290ms
+
+
+  
+ActionController::UnknownFormat (ProductsController#get_all is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.):
+  
+actionpack (5.1.6) lib/action_controller/metal/implicit_render.rb:53:in `default_render'
+actionpack (5.1.6) lib/action_controller/metal/basic_implicit_render.rb:4:in `block in send_action'
+actionpack (5.1.6) lib/action_controller/metal/basic_implicit_render.rb:4:in `tap'
+actionpack (5.1.6) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+actionpack (5.1.6) lib/abstract_controller/base.rb:186:in `process_action'
+actionpack (5.1.6) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.1.6) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+activesupport (5.1.6) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.1.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.1.6) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.1.6) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.1.6) lib/active_support/notifications.rb:166:in `block in instrument'
+activesupport (5.1.6) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.1.6) lib/active_support/notifications.rb:166:in `instrument'
+actionpack (5.1.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.1.6) lib/action_controller/metal/params_wrapper.rb:252:in `process_action'
+activerecord (5.1.6) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.6) lib/abstract_controller/base.rb:124:in `process'
+actionview (5.1.6) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.6) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.6) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:844:in `call'
+rack (2.0.4) lib/rack/etag.rb:25:in `call'
+rack (2.0.4) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.4) lib/rack/head.rb:12:in `call'
+rack (2.0.4) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.4) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.6) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.6) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.6.0) lib/web_console/middleware.rb:137:in `call_app'
+web-console (3.6.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 10:54:29 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 576ms (Views: 572.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 10:55:30 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 135ms (Views: 130.4ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 10:56:22 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 41ms (Views: 37.9ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 10:59:01 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 652ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 10:59:15 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 697ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 10:59:29 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 37ms (Views: 33.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 10:59:43 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 699ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:00:01 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 1698ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:00:56 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 318ms
+
+
+  
+NameError (undefined local variable or method `http' for #<ProductsController:0x00007ffaea3b3818>
+Did you mean?  @http):
+  
+app/controllers/products_controller.rb:6:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:01:08 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 716ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:03:32 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 28ms
+
+
+  
+NoMethodError (undefined method `malaya' for Product (call 'Product.connection' to establish a connection):Class):
+  
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:03:52 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 50ms
+
+
+  
+NoMethodError (undefined method `malaya' for Product (call 'Product.connection' to establish a connection):Class):
+  
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:05:51 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 668ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:06:31 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 657ms (Views: 62.7ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:07:38 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 826ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:08:05 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 693ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:18:25 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 160ms
+
+
+  
+LoadError (cannot load such file -- httparty):
+  
+app/helpers/application_helper.rb:3:in `malaya'
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:18:51 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 21ms
+
+
+  
+NameError (uninitialized constant ApplicationHelper::HTTParty):
+  
+app/helpers/application_helper.rb:8:in `malaya'
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:22:36 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 1870ms (Views: 83.5ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:23:56 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 652ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:24:10 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 150ms (Views: 61.2ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:25:58 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 1638ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:26:24 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 584ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:26:52 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 689ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:29:05 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 646ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:30:02 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 811ms
+
+
+  
+EOFError (end of file reached):
+  
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:33:47 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 701ms
+
+
+  
+NameError (undefined local variable or method `url' for #<#<Class:0x00007ffaea429ec8>:0x00007ffaea4282f8>
+Did you mean?  uri
+               URI):
+  
+app/helpers/application_helper.rb:7:in `malaya'
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:34:18 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 3000ms (Views: 42.5ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:34:52 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 751ms (Views: 42.7ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:59:22 -0300
+  [1m[35m (5.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 1135ms (Views: 366.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 11:59:41 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 643ms (Views: 35.7ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:04:02 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 5ms
+
+
+  
+ArgumentError (header field value cannnot include CR/LF):
+  
+app/helpers/application_helper.rb:10:in `malaya'
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:04:25 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 107ms (Views: 75.7ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:04:43 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 772ms (Views: 35.6ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:09:37 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 697ms (Views: 37.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:09:58 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 745ms (Views: 45.8ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:11:30 -0300
+  
+SyntaxError (/Users/JPSCHELE/Desktop/TI/api/app/helpers/application_helper.rb:7: syntax error, unexpected tIDENTIFIER, expecting ')'
+        hmac = Base64.encode64(hmac)
+            ^):
+  
+app/helpers/application_helper.rb:7: syntax error, unexpected tIDENTIFIER, expecting ')'
+app/controllers/application_controller.rb:1:in `<top (required)>'
+app/controllers/products_controller.rb:1:in `<top (required)>'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:11:44 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 2ms
+
+
+  
+ArgumentError (header field value cannnot include CR/LF):
+  
+app/helpers/application_helper.rb:10:in `malaya'
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:12:07 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 2ms
+
+
+  
+ArgumentError (header field value cannnot include CR/LF):
+  
+app/helpers/application_helper.rb:10:in `malaya'
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:12:19 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 40ms (Views: 36.0ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:12:32 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 700ms (Views: 43.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:14:25 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 697ms (Views: 34.0ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:15:57 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 867ms (Views: 33.9ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:16:13 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 799ms (Views: 30.8ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:17:26 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 694ms (Views: 44.4ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:17:39 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 733ms (Views: 44.6ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:21:33 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 2905ms (Views: 42.0ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:23:07 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 655ms (Views: 33.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:25:04 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (12.6ms)
+Completed 200 OK in 737ms (Views: 60.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:27:33 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 2982ms (Views: 38.4ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:27:59 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 720ms (Views: 27.7ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:28:38 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (1.1ms)
+Completed 500 Internal Server Error in 640ms
+
+
+  
+SyntaxError (/Users/JPSCHELE/Desktop/TI/api/app/views/products/get_all.html.erb:4: syntax error, unexpected keyword_ensure, expecting keyword_end
+          ensure
+                ^):
+  
+app/views/products/get_all.html.erb:4: syntax error, unexpected keyword_ensure, expecting keyword_end
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:28:49 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 608ms
+
+
+  
+SyntaxError (/Users/JPSCHELE/Desktop/TI/api/app/views/products/get_all.html.erb:4: syntax error, unexpected keyword_ensure, expecting keyword_end
+          ensure
+                ^):
+  
+app/views/products/get_all.html.erb:4: syntax error, unexpected keyword_ensure, expecting keyword_end
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:29:17 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (7.2ms)
+Completed 500 Internal Server Error in 647ms
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<String:0x00007f8cc70e9fb0>):
+    1: <%= @algo.each do |hola| %>
+    2: <%= hola%>
+    3: <%end%>
+  
+app/views/products/get_all.html.erb:1:in `_app_views_products_get_all_html_erb___4549705632105540415_70121305883760'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:29:33 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 746ms (Views: 38.5ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:29:55 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 30008ms
+
+
+  
+SocketError (Failed to open TCP connection to integracion-2018-dev.herokuapp.com:443 (getaddrinfo: nodename nor servname provided, or not known)):
+  
+app/helpers/application_helper.rb:15:in `malaya'
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:30:39 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 666ms (Views: 28.0ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:30:58 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 650ms (Views: 40.0ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:31:34 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 684ms (Views: 30.2ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:31:45 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 648ms (Views: 26.4ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:42:28 -0300
+  
+SyntaxError (/Users/JPSCHELE/Desktop/TI/api/app/helpers/application_helper.rb:24: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/helpers/application_helper.rb:24: syntax error, unexpected end-of-input, expecting keyword_end
+app/controllers/application_controller.rb:1:in `<top (required)>'
+app/controllers/products_controller.rb:1:in `<top (required)>'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:42:48 -0300
+  
+SyntaxError (/Users/JPSCHELE/Desktop/TI/api/app/helpers/application_helper.rb:25: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/helpers/application_helper.rb:25: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/application_controller.rb:1:in `<top (required)>'
+app/controllers/products_controller.rb:1:in `<top (required)>'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:42:59 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 267ms
+
+
+  
+NoMethodError (undefined method `open_warehouses' for #<#<Class:0x00007f8cc52498a8>:0x00007f8cc52414c8>
+Did you mean?  open_warehouse):
+  
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:43:11 -0300
+Processing by ProductsController#get_all as HTML
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (3.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2723"], ["usedSpace", 0], ["totalSpace", 1192], ["reception", "t"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:43:14.642652"], ["updated_at", "2018-04-18 15:43:14.642652"]]
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2724"], ["usedSpace", 0], ["totalSpace", 1861], ["reception", "f"], ["despacho", "t"], ["pulmon", "f"], ["created_at", "2018-04-18 15:43:14.652519"], ["updated_at", "2018-04-18 15:43:14.652519"]]
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6a"], ["usedSpace", 0], ["totalSpace", 4267], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:43:14.661184"], ["updated_at", "2018-04-18 15:43:14.661184"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6b"], ["usedSpace", 0], ["totalSpace", 99999999], ["reception", "f"], ["despacho", "f"], ["pulmon", "t"], ["created_at", "2018-04-18 15:43:14.665513"], ["updated_at", "2018-04-18 15:43:14.665513"]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2725"], ["usedSpace", 2116], ["totalSpace", 31708], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:43:14.670647"], ["updated_at", "2018-04-18 15:43:14.670647"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3269ms (Views: 133.9ms | ActiveRecord: 19.4ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:46:20 -0300
+Processing by ProductsController#get_all as HTML
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2723"], ["usedSpace", 0], ["totalSpace", 1192], ["reception", "t"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:46:20.874320"], ["updated_at", "2018-04-18 15:46:20.874320"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2724"], ["usedSpace", 0], ["totalSpace", 1861], ["reception", "f"], ["despacho", "t"], ["pulmon", "f"], ["created_at", "2018-04-18 15:46:20.880498"], ["updated_at", "2018-04-18 15:46:20.880498"]]
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6a"], ["usedSpace", 0], ["totalSpace", 4267], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:46:20.885952"], ["updated_at", "2018-04-18 15:46:20.885952"]]
+  [1m[35m (7.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6b"], ["usedSpace", 0], ["totalSpace", 99999999], ["reception", "f"], ["despacho", "f"], ["pulmon", "t"], ["created_at", "2018-04-18 15:46:20.896629"], ["updated_at", "2018-04-18 15:46:20.896629"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2725"], ["usedSpace", 2116], ["totalSpace", 31708], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:46:20.907259"], ["updated_at", "2018-04-18 15:46:20.907259"]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mWarehouse Load (0.3ms)[0m  [1m[34mSELECT  "warehouses".* FROM "warehouses" ORDER BY "warehouses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 803ms (Views: 38.5ms | ActiveRecord: 25.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:46:28 -0300
+Processing by ProductsController#get_all as HTML
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2723"], ["usedSpace", 0], ["totalSpace", 1192], ["reception", "t"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:46:28.800086"], ["updated_at", "2018-04-18 15:46:28.800086"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2724"], ["usedSpace", 0], ["totalSpace", 1861], ["reception", "f"], ["despacho", "t"], ["pulmon", "f"], ["created_at", "2018-04-18 15:46:28.805008"], ["updated_at", "2018-04-18 15:46:28.805008"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6a"], ["usedSpace", 0], ["totalSpace", 4267], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:46:28.809051"], ["updated_at", "2018-04-18 15:46:28.809051"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6b"], ["usedSpace", 0], ["totalSpace", 99999999], ["reception", "f"], ["despacho", "f"], ["pulmon", "t"], ["created_at", "2018-04-18 15:46:28.814494"], ["updated_at", "2018-04-18 15:46:28.814494"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2725"], ["usedSpace", 2116], ["totalSpace", 31708], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:46:28.819105"], ["updated_at", "2018-04-18 15:46:28.819105"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mWarehouse Load (0.5ms)[0m  [1m[34mSELECT  "warehouses".* FROM "warehouses" ORDER BY "warehouses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 744ms (Views: 29.8ms | ActiveRecord: 10.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:46:40 -0300
+Processing by ProductsController#get_all as HTML
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2723"], ["usedSpace", 0], ["totalSpace", 1192], ["reception", "t"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:46:40.752539"], ["updated_at", "2018-04-18 15:46:40.752539"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2724"], ["usedSpace", 0], ["totalSpace", 1861], ["reception", "f"], ["despacho", "t"], ["pulmon", "f"], ["created_at", "2018-04-18 15:46:40.770784"], ["updated_at", "2018-04-18 15:46:40.770784"]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (2.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6a"], ["usedSpace", 0], ["totalSpace", 4267], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:46:40.782766"], ["updated_at", "2018-04-18 15:46:40.782766"]]
+  [1m[35m (8.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6b"], ["usedSpace", 0], ["totalSpace", 99999999], ["reception", "f"], ["despacho", "f"], ["pulmon", "t"], ["created_at", "2018-04-18 15:46:40.794375"], ["updated_at", "2018-04-18 15:46:40.794375"]]
+  [1m[35m (2.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2725"], ["usedSpace", 2116], ["totalSpace", 31708], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:46:40.810082"], ["updated_at", "2018-04-18 15:46:40.810082"]]
+  [1m[35m (10.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mWarehouse Load (0.3ms)[0m  [1m[34mSELECT  "warehouses".* FROM "warehouses" ORDER BY "warehouses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 825ms (Views: 37.9ms | ActiveRecord: 31.8ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:50:50 -0300
+Processing by ProductsController#get_all as HTML
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2723"], ["usedSpace", 0], ["totalSpace", 1192], ["reception", "t"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:50:53.593649"], ["updated_at", "2018-04-18 15:50:53.593649"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2724"], ["usedSpace", 0], ["totalSpace", 1861], ["reception", "f"], ["despacho", "t"], ["pulmon", "f"], ["created_at", "2018-04-18 15:50:53.599120"], ["updated_at", "2018-04-18 15:50:53.599120"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6a"], ["usedSpace", 0], ["totalSpace", 4267], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:50:53.610410"], ["updated_at", "2018-04-18 15:50:53.610410"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6b"], ["usedSpace", 0], ["totalSpace", 99999999], ["reception", "f"], ["despacho", "f"], ["pulmon", "t"], ["created_at", "2018-04-18 15:50:53.616242"], ["updated_at", "2018-04-18 15:50:53.616242"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2725"], ["usedSpace", 2116], ["totalSpace", 31708], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:50:53.621087"], ["updated_at", "2018-04-18 15:50:53.621087"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 2925ms (ActiveRecord: 10.3ms)
+
+
+  
+NameError (uninitialized constant Rake::Task):
+  
+app/helpers/application_helper.rb:23:in `open_warehouses'
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 12:56:00 -0300
+Processing by ProductsController#get_all as HTML
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2723"], ["usedSpace", 0], ["totalSpace", 1192], ["reception", "t"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:56:04.223898"], ["updated_at", "2018-04-18 15:56:04.223898"]]
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2724"], ["usedSpace", 0], ["totalSpace", 1861], ["reception", "f"], ["despacho", "t"], ["pulmon", "f"], ["created_at", "2018-04-18 15:56:04.232487"], ["updated_at", "2018-04-18 15:56:04.232487"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6a"], ["usedSpace", 0], ["totalSpace", 4267], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:56:04.237392"], ["updated_at", "2018-04-18 15:56:04.237392"]]
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6b"], ["usedSpace", 0], ["totalSpace", 99999999], ["reception", "f"], ["despacho", "f"], ["pulmon", "t"], ["created_at", "2018-04-18 15:56:04.242752"], ["updated_at", "2018-04-18 15:56:04.242752"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2725"], ["usedSpace", 2116], ["totalSpace", 31708], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 15:56:04.246822"], ["updated_at", "2018-04-18 15:56:04.246822"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mWarehouse Load (0.3ms)[0m  [1m[34mSELECT  "warehouses".* FROM "warehouses" ORDER BY "warehouses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 3339ms (Views: 60.2ms | ActiveRecord: 14.0ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:06:27 -0300
+  
+SyntaxError (/Users/JPSCHELE/Desktop/TI/api/app/helpers/application_helper.rb:27: syntax error, unexpected end-of-input):
+  
+app/helpers/application_helper.rb:27: syntax error, unexpected end-of-input
+app/controllers/application_controller.rb:1:in `<top (required)>'
+app/controllers/products_controller.rb:1:in `<top (required)>'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:06:40 -0300
+Processing by ProductsController#get_all as HTML
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2723"], ["usedSpace", 0], ["totalSpace", 1192], ["reception", "t"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 16:06:41.991171"], ["updated_at", "2018-04-18 16:06:41.991171"]]
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2724"], ["usedSpace", 0], ["totalSpace", 1861], ["reception", "f"], ["despacho", "t"], ["pulmon", "f"], ["created_at", "2018-04-18 16:06:42.001275"], ["updated_at", "2018-04-18 16:06:42.001275"]]
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6a"], ["usedSpace", 0], ["totalSpace", 4267], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 16:06:42.012644"], ["updated_at", "2018-04-18 16:06:42.012644"]]
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6b"], ["usedSpace", 0], ["totalSpace", 99999999], ["reception", "f"], ["despacho", "f"], ["pulmon", "t"], ["created_at", "2018-04-18 16:06:42.021836"], ["updated_at", "2018-04-18 16:06:42.021836"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2725"], ["usedSpace", 2116], ["totalSpace", 31708], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 16:06:42.026980"], ["updated_at", "2018-04-18 16:06:42.026980"]]
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mWarehouse Load (0.8ms)[0m  [1m[34mSELECT  "warehouses".* FROM "warehouses" ORDER BY "warehouses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 1216ms (Views: 42.6ms | ActiveRecord: 16.0ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:10:50 -0300
+Processing by ProductsController#get_all as HTML
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2723"], ["usedSpace", 0], ["totalSpace", 1192], ["reception", "t"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 16:10:51.182956"], ["updated_at", "2018-04-18 16:10:51.182956"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2724"], ["usedSpace", 0], ["totalSpace", 1861], ["reception", "f"], ["despacho", "t"], ["pulmon", "f"], ["created_at", "2018-04-18 16:10:51.188801"], ["updated_at", "2018-04-18 16:10:51.188801"]]
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6a"], ["usedSpace", 0], ["totalSpace", 4267], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 16:10:51.195586"], ["updated_at", "2018-04-18 16:10:51.195586"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6b"], ["usedSpace", 0], ["totalSpace", 99999999], ["reception", "f"], ["despacho", "f"], ["pulmon", "t"], ["created_at", "2018-04-18 16:10:51.200685"], ["updated_at", "2018-04-18 16:10:51.200685"]]
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2725"], ["usedSpace", 2116], ["totalSpace", 31708], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 16:10:51.206459"], ["updated_at", "2018-04-18 16:10:51.206459"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mWarehouse Load (0.4ms)[0m  [1m[34mSELECT  "warehouses".* FROM "warehouses" ORDER BY "warehouses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 808ms (Views: 59.9ms | ActiveRecord: 19.2ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:11:13 -0300
+Processing by ProductsController#get_all as HTML
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2723"], ["usedSpace", 0], ["totalSpace", 1192], ["reception", "t"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 16:11:14.357069"], ["updated_at", "2018-04-18 16:11:14.357069"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2724"], ["usedSpace", 0], ["totalSpace", 1861], ["reception", "f"], ["despacho", "t"], ["pulmon", "f"], ["created_at", "2018-04-18 16:11:14.362703"], ["updated_at", "2018-04-18 16:11:14.362703"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6a"], ["usedSpace", 0], ["totalSpace", 4267], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 16:11:14.367609"], ["updated_at", "2018-04-18 16:11:14.367609"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2dd6ed1f00049c2f6b"], ["usedSpace", 0], ["totalSpace", 99999999], ["reception", "f"], ["despacho", "f"], ["pulmon", "t"], ["created_at", "2018-04-18 16:11:14.372605"], ["updated_at", "2018-04-18 16:11:14.372605"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "warehouses" ("gid", "usedSpace", "totalSpace", "reception", "despacho", "pulmon", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["gid", "5ad36a2cd6ed1f00049c2725"], ["usedSpace", 2116], ["totalSpace", 31708], ["reception", "f"], ["despacho", "f"], ["pulmon", "f"], ["created_at", "2018-04-18 16:11:14.377534"], ["updated_at", "2018-04-18 16:11:14.377534"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mWarehouse Load (0.4ms)[0m  [1m[34mSELECT  "warehouses".* FROM "warehouses" ORDER BY "warehouses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 704ms (Views: 26.9ms | ActiveRecord: 12.0ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:25:08 -0300
+  
+SyntaxError (/Users/JPSCHELE/Desktop/TI/api/app/helpers/application_helper.rb:43: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/helpers/application_helper.rb:43: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/application_controller.rb:1:in `<top (required)>'
+app/controllers/products_controller.rb:1:in `<top (required)>'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:26:38 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 2883ms
+
+
+  
+NoMethodError (undefined method `pase' for JSON:Module
+Did you mean?  parse):
+  
+app/helpers/application_helper.rb:16:in `open_warehouses'
+app/controllers/products_controller.rb:3:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:26:51 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 1326ms
+
+
+  
+TypeError (no implicit conversion of Net::HTTPUnauthorized into String):
+  
+app/helpers/application_helper.rb:35:in `block in open_products'
+app/helpers/application_helper.rb:23:in `each'
+app/helpers/application_helper.rb:23:in `open_products'
+app/controllers/products_controller.rb:4:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:27:09 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 1334ms (Views: 42.8ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:27:30 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 1279ms (Views: 34.4ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:29:19 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 1261ms (Views: 26.2ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:29:36 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 1308ms (Views: 26.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:30:21 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (68.0ms)
+Completed 200 OK in 4248ms (Views: 111.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:30:48 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 3790ms (Views: 27.0ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:39:59 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 3986ms (Views: 52.8ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:41:49 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 3867ms (Views: 29.7ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:42:21 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 3890ms (Views: 36.6ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:42:55 -0300
+Processing by ProductsController#get_all as HTML
+Completed 500 Internal Server Error in 5364ms
+
+
+  
+NameError (undefined local variable or method `products' for #<#<Class:0x00007f8cc71c24c8>:0x00007f8cc71c0560>):
+  
+app/helpers/application_helper.rb:46:in `open_products'
+app/controllers/products_controller.rb:4:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:43:52 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 4344ms (Views: 51.5ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:47:04 -0300
+  
+SyntaxError (/Users/JPSCHELE/Desktop/TI/api/app/helpers/application_helper.rb:53: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/helpers/application_helper.rb:53: syntax error, unexpected end-of-input, expecting keyword_end
+app/controllers/application_controller.rb:1:in `<top (required)>'
+app/controllers/products_controller.rb:1:in `<top (required)>'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:47:13 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 3978ms (Views: 41.2ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:47:36 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3684ms (Views: 31.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:48:02 -0300
+Processing by ProductsController#get_all as HTML
+  Rendering products/get_all.html.erb within layouts/application
+  Rendered products/get_all.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 4218ms (Views: 28.6ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:56:47 -0300
+  
+SyntaxError (/Users/JPSCHELE/Desktop/TI/api/app/controllers/products_controller.rb:7: syntax error, unexpected keyword_end
+    end
+       ^):
+  
+app/controllers/products_controller.rb:7: syntax error, unexpected keyword_end
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:57:05 -0300
+Processing by ProductsController#get_all as HTML
+Completed 200 OK in 5955ms (Views: 2.4ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:57:40 -0300
+Processing by ProductsController#get_all as */*
+Completed 200 OK in 3792ms (Views: 2.2ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:59:16 -0300
+Processing by ProductsController#get_all as */*
+Completed 500 Internal Server Error in 1680ms
+
+
+  
+NameError (undefined local variable or method `pruducts' for #<#<Class:0x00007f8cc0b910f0>:0x00007f8cc0b8f318>
+Did you mean?  products):
+  
+app/helpers/application_helper.rb:36:in `block in open_products'
+app/helpers/application_helper.rb:23:in `each'
+app/helpers/application_helper.rb:23:in `open_products'
+app/controllers/products_controller.rb:4:in `get_all'
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 13:59:40 -0300
+Processing by ProductsController#get_all as */*
+Completed 200 OK in 3883ms (Views: 3.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 14:00:02 -0300
+Processing by ProductsController#get_all as */*
+Completed 200 OK in 3819ms (Views: 3.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 14:01:07 -0300
+Processing by ProductsController#get_all as */*
+Completed 200 OK in 3731ms (Views: 2.3ms)
+
+
+Started GET "/public/stock" for 127.0.0.1 at 2018-04-18 18:55:34 -0300
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#get_all as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.57ms)
+Completed 200 OK in 3887ms (Views: 10.7ms | ActiveRecord: 0.0ms)
+
+
